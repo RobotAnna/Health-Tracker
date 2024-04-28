@@ -9,6 +9,14 @@ https://stackoverflow.com/questions/39224382/how-can-i-import-a-json-file-into-p
 
 https://towardsdatascience.com/building-a-data-pipeline-for-my-strava-data-98ea8b2b0767
 
+
+
+** Load parquet to postgres **
+
+https://www.crunchydata.com/blog/parquet-and-postgres-in-the-data-lake
+
+https://medium.com/@ahuarte/loading-parquet-in-postgresql-via-duckdb-testing-queries-and-exploring-the-core-1d667ae67dc2
+
 ---------------------------------------------------------------
 API
 
@@ -56,16 +64,37 @@ Elevation gain
 
 
 ---------------------------------------------------------------
+STAGING
+
+<source>_<entity>, eg
+STRAVA_ATHLETE
+STRAVA_GEAR
+STRAVA_ACTIVITY
+
+audit columns
+hashkey
+loaddate
+
+---------------------------------------------------------------
 MODEL
 
-D_Date
-(standard ref dim)
+Reference:
+D_Date (standard ref dim)
 
+Derived:
 D_Activity_Type
+D_Gear
+
+Transformed:
+D_Activity
+D_Athlete
+
+Calculated & Aggregated:
+F_Sport (aggregated activities)
+F_Fitness (calculated fitness)
 
 
 
-F_Fitness
 
 
 EXAMPLE DATA
