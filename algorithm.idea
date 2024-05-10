@@ -1,0 +1,36 @@
+
+
+---------------------------------------------------------------
+DATABASE
+** how to ingest json natively? what if its nested?
+
+
+
+
+---------------------------------------------------------------
+CODE
+
+get_date_of_last_warehouse_update()
+
+def get_date_of_last_warehouse_update() -> Tuple[datetime, str]:
+  # Get the datetime of last time data was extracted from Strava API by querying PGRES database and also return current datetime.
+
+  mysql_conn = connect_mysql()
+  get_last_updated_query = """
+    SELECT COALESCE(MAX(LastUpdated), '1900-01-01')
+    FROM last_extracted;"""
+  mysql_cursor = mysql_conn.cursor()
+  mysql_cursor.execute(get_last_updated_query)
+  result = mysql_cursor.fetchone()
+  last_updated_warehouse = datetime.strptime(result[0], "%Y-%m-%d %H:%M:%S")
+  current_datetime = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
+  return last_updated_warehouse, current_datetime
+
+
+connect to local database: retrieve last load date, default null
+
+connect to strava: initial auth / continuous refresh token
+if first time: retrieve athlete
+retrieve all activities from last load date
+
+

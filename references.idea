@@ -1,0 +1,32 @@
+
+
+Better Examples
+
+**best**
+https://davidgomes.com/loading-strava-activities-into-a-sql-database-and-using-english-to-ask-questions/
+
+https://stackoverflow.com/questions/39224382/how-can-i-import-a-json-file-into-postgresql
+
+https://towardsdatascience.com/building-a-data-pipeline-for-my-strava-data-98ea8b2b0767
+
+
+
+** Load parquet to postgres **
+
+https://www.crunchydata.com/blog/parquet-and-postgres-in-the-data-lake
+
+https://medium.com/@ahuarte/loading-parquet-in-postgresql-via-duckdb-testing-queries-and-exploring-the-core-1d667ae67dc2
+
+---------------------------------------------------------------
+API
+
+https://developers.strava.com/docs/getting-started/
+
+Get Authenticated Athlete
+https://developers.strava.com/docs/reference/#api-Athletes-getLoggedInAthlete
+
+List Athlete Activities
+https://developers.strava.com/docs/reference/#api-Activities-getLoggedInAthleteActivities
+
+https://www.ibm.com/docs/en/informix-servers/14.10?topic=model-concepts-dimensional-data-modeling
+

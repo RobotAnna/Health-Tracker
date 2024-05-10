@@ -1,0 +1,12 @@
+Src, Method, Freq, Descr
+
+Scale; manual excel; weekly; weight and fat percentage
+PressureSleeve; manual excel; weekly; blood pressure and heart rate
+Meds; manual excel; weekly; activities: mg dose, med type, date/time
+Diary; manual excel; weekly; subjective observations on focus, mood, energy
+Strava; API; weekly; sport activities and gear
+Garmin; manual export + csv load; weekly; sleep and period data
+KNMI for weather
+* Date dimension
+
+
