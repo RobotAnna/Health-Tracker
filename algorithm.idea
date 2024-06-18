@@ -6,14 +6,52 @@ DATABASE
 
 
 
+---------------------------------------------------------------
+SCRIPTS
+
+Folders
+
+lib
+-- common py functions, such as get_date_of_last_source_load
+-- common connectors, such as connect via api
+setup
+-- one-time initialization of database and connections. file naming = setup_<source or object>
+import
+-- regular import <source> to memory and import to database STG. file naming = import_<source>
+
+
 
 ---------------------------------------------------------------
-CODE
+ALGORITHM
 
-get_date_of_last_warehouse_update()
+LIB - get_date_of_last_source_load
+connect to local database: retrieve last load date for specified source, default null
 
-def get_date_of_last_warehouse_update() -> Tuple[datetime, str]:
-  # Get the datetime of last time data was extracted from Strava API by querying PGRES database and also return current datetime.
+SETUP - setup_strava.ipynb
+one-time authentication with athlete
+exchange auth code for access token + refresh token, write to token file (create file if doesn't exist)
+
+IMPORT - import_strava.py
+check connection, exit if not set up
+does token need refreshing? --> refresh token
+get_date_of_last_source_load from database
+retrieve athlete, import if data has changed
+retrieve activities, save gear array, import if new or updated
+retrieve gear, import if new or updated
+
+IMPORT - <date>_meds.csv, <date>_scale.csv, <date>_diary.csv
+does at least one file exist, if not then end with error
+get_date_of_last_source_load from database
+load meds, import if new or updated, move file to processed folder
+load scale, import if new or updated, move file to processed folder
+load diary, derive ref data, import records if new or updated, move file to processed folder
+load ref data, import records if new or updated
+
+
+
+
+def get_date_of_last_source_load(sourcename) -> Tuple[datetime, str]:
+  # Get the datetime of last time data was extracted from <source> API by querying PGRES database and also return current datetime.
 
   mysql_conn = connect_mysql()
   get_last_updated_query = """
@@ -27,10 +65,7 @@ def get_date_of_last_warehouse_update() -> Tuple[datetime, str]:
   return last_updated_warehouse, current_datetime
 
 
-connect to local database: retrieve last load date, default null
 
 connect to strava: initial auth / continuous refresh token
 if first time: retrieve athlete
 retrieve all activities from last load date
-
-

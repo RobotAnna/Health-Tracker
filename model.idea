@@ -6,12 +6,18 @@ STRAVA_ATHLETE
 STRAVA_GEAR
 STRAVA_ACTIVITY
 
-audit columns
-hashkey
-loaddate
+audit columns?
+KEY_VALUE
+HASH_VALUE
+BK
+FROM_DATE
+TO_DATE
+UPDATED_DATE
 
 ---------------------------------------------------------------
 MODEL
+All views, so there is no daily transform script necessary.
+
 
 Reference:
 D_Date (standard ref dim)
